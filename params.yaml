@@ -1,0 +1,34 @@
+data: # data-related parameters
+  train_split: 0.7 # proportion of data used for training (rest is test)
+  test_size: 0.3   # proportion of data used for testing (rest is training)        
+  random_seed: 42 # for reproducibility when splitting data
+
+model: # model architecture and training parameters
+  epochs: 10 # number of training epochs
+  batch_size: 32           # number of samples per training batch
+  learning_rate: 0.0001    # adam default, now explicit
+  dense_units: 10          # kept for compatibility
+
+  # CNN architecture parameters  
+  cnn_filters:
+  - 64
+  - 128
+  - 64
+  kernel_size: 3   # convolution kernel size        
+  pool_size: 2            # max pooling size
+  dense_units_1: 256      # first dense layer units
+  dense_units_2: 128      # second dense layer units
+  dense_units_3: 64       # third dense layer units
+  dropout_1: 0.3          #   dropout rate after conv layers   
+  dropout_2: 0.2          # dropout rate after first dense layer
+
+callbacks: # training callbacks parameters
+  early_stopping_patience: 10     # epochs with no val_loss improvement before stopping
+  reduce_lr_patience: 5           # epochs with no val_loss improvement before reducing LR
+  reduce_lr_factor: 0.5           # factor to reduce LR by when triggered
+  reduce_lr_min_lr: 0.000001      # minimum learning rate after reductions
+
+evaluate: # evaluation parameters
+  confusion_matrix: true # whether to plot confusion matrix
+  classification_report: true # whether to print classification report
+  metrics_path: metrics.json # where DVC metrics are saved

@@ -1,0 +1,22 @@
+stages:
+  evaluate: # evaluate the model on test set and save metrics/plots
+    cmd: python src/evaluate.py # evaluate the model and save metrics/plots
+    deps: # dependencies for this stage
+    - src/evaluate.py
+    - models/model.keras
+    - artifacts/X_test_cnn.npy
+    - artifacts/y_test.npy
+    - artifacts/training_history.json
+    - artifacts/feature_columns.json
+    - test/test.csv
+    - params.yaml
+    metrics: # metrics to save and track with DVC
+    - metrics.json:
+        cache: false # don't store metrics.json in DVC cache since it's small and we want to overwrite it each time
+params:
+- dvclive/params.yaml
+metrics:
+- dvclive/metrics.json
+plots:
+- dvclive/plots/metrics:
+    x: step

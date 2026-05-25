@@ -1,0 +1,5 @@
+[core]
+    remote = origin
+    autostage = true
+['remote "origin"']
+    url = https://dagshub.com/AfzalAChowdhary/deployment-data-COS40007.dvc
