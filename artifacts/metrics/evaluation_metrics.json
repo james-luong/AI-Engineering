@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-05-26T01:51:00.892304Z",
+  "timestamp": "2026-05-26T01:52:31.958311Z",
   "test_samples": 99,
   "num_classes": 3,
   "class_names": [
@@ -11,7 +11,7 @@
   "precision": 0.9118967452300785,
   "recall": 0.9090909090909091,
   "f1_score": 0.909555007232196,
-  "roc_auc": 0.9815131951242781,
+  "roc_auc": 0.9805502894591781,
   "confusion_matrix": [
     [
       24,

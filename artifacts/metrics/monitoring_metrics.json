@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-05-26T01:51:09.146059Z",
+  "timestamp": "2026-05-26T01:52:32.914775Z",
   "current_accuracy": 0.9090909090909091,
   "current_f1": 0.909555007232196,
-  "current_roc_auc": 0.9815131951242781,
+  "current_roc_auc": 0.9805502894591781,
   "alert": false,
-  "accuracy_drop": 0.02020202020202022,
-  "baseline_accuracy": 0.9292929292929293
+  "accuracy_drop": 0.0,
+  "baseline_accuracy": 0.9090909090909091
 }
