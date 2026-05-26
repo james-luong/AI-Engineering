@@ -43,7 +43,7 @@ jobs:
           DAGSHUB_TOKEN:    ${{ secrets.DAGSHUB_TOKEN }}
           DAGSHUB_REPO:     ${{ secrets.DAGSHUB_REPO }}
         run: |
-          dvc remote add -d origin \
+          dvc remote add -d -f origin \
             https://dagshub.com/${DAGSHUB_USERNAME}/${DAGSHUB_REPO}.dvc
           dvc remote modify origin --local auth basic
           dvc remote modify origin --local user     $DAGSHUB_USERNAME
