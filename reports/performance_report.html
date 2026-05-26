@@ -26,31 +26,31 @@
 </head>
 <body>
   <h1>TPC Model Performance Report</h1>
-  <p class="ts">Generated: 2026-05-26T00:29:06.375651Z &nbsp;|&nbsp; Test samples: 99</p>
+  <p class="ts">Generated: 2026-05-26T01:51:00.892304Z &nbsp;|&nbsp; Test samples: 99</p>
   <p class="sub">Model: SVM (RBF kernel, C=10, γ=0.1) &nbsp;|&nbsp;
      Dataset: Tetuan City Power Consumption &nbsp;|&nbsp;
      Target: Zone 1 Power Consumption (Low / Medium / High)</p>
 
   <h2>Summary Metrics</h2>
   <div class="cards">
-    <div class="card"><div class="lbl">Accuracy</div> <div class="val">92.93%</div></div>
-    <div class="card"><div class="lbl">Precision</div><div class="val">93.05%</div></div>
-    <div class="card"><div class="lbl">Recall</div>   <div class="val">92.93%</div></div>
-    <div class="card"><div class="lbl">F1 Score</div> <div class="val">92.98%</div></div>
-    <div class="card"><div class="lbl">ROC-AUC</div>  <div class="val">98.07%</div></div>
+    <div class="card"><div class="lbl">Accuracy</div> <div class="val">90.91%</div></div>
+    <div class="card"><div class="lbl">Precision</div><div class="val">91.19%</div></div>
+    <div class="card"><div class="lbl">Recall</div>   <div class="val">90.91%</div></div>
+    <div class="card"><div class="lbl">F1 Score</div> <div class="val">90.96%</div></div>
+    <div class="card"><div class="lbl">ROC-AUC</div>  <div class="val">98.15%</div></div>
   </div>
 
   <h2>Per-Class Breakdown</h2>
   <table>
     <thead><tr><th>Class</th><th>Precision</th><th>Recall</th><th>F1</th><th>Support</th></tr></thead>
-    <tbody><tr><td>High</td><td>0.8966</td><td>0.8966</td><td>0.8966</td><td>29</td></tr><tr><td>Low</td><td>1.0000</td><td>0.9730</td><td>0.9863</td><td>37</td></tr><tr><td>Medium</td><td>0.8824</td><td>0.9091</td><td>0.8955</td><td>33</td></tr></tbody>
+    <tbody><tr><td>High</td><td>0.8889</td><td>0.8276</td><td>0.8571</td><td>29</td></tr><tr><td>Low</td><td>1.0000</td><td>0.9730</td><td>0.9863</td><td>37</td></tr><tr><td>Medium</td><td>0.8333</td><td>0.9091</td><td>0.8696</td><td>33</td></tr></tbody>
   </table>
 
   <h2>Confusion Matrix</h2>
   <p style="color:#555;font-size:.9em">Diagonal cells (green) = correct predictions</p>
   <table>
     <thead><tr><th>Actual \ Predicted</th><th>High</th><th>Low</th><th>Medium</th></tr></thead>
-    <tbody><tr><th>High</th><td class="hl">26</td><td>0</td><td>3</td></tr><tr><th>Low</th><td>0</td><td class="hl">36</td><td>1</td></tr><tr><th>Medium</th><td>3</td><td>0</td><td class="hl">30</td></tr></tbody>
+    <tbody><tr><th>High</th><td class="hl">24</td><td>0</td><td>5</td></tr><tr><th>Low</th><td>0</td><td class="hl">36</td><td>1</td></tr><tr><th>Medium</th><td>3</td><td>0</td><td class="hl">30</td></tr></tbody>
   </table>
 </body>
 </html>

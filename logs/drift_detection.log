@@ -8,3 +8,13 @@
 2026-05-26 00:29:07,623 [INFO] No drift       | DayOfWeek                           | KS=0.0511 | p=0.9995
 2026-05-26 00:29:07,623 [INFO] No drift       | Month                               | KS=0.0000 | p=1.0000
 2026-05-26 00:29:07,623 [INFO] Drift summary: 0/8 features drifted
+2026-05-26 11:51:09,142 [INFO] Running KS drift detection …
+2026-05-26 11:51:09,143 [INFO] No drift       | Temperature                         | KS=0.0932 | p=0.7869
+2026-05-26 11:51:09,143 [INFO] No drift       | Humidity                            | KS=0.0816 | p=0.8952
+2026-05-26 11:51:09,143 [INFO] No drift       | Wind Speed                          | KS=0.1331 | p=0.3603
+2026-05-26 11:51:09,144 [INFO] No drift       | general diffuse flows               | KS=0.1015 | p=0.6938
+2026-05-26 11:51:09,144 [INFO] No drift       | diffuse flows                       | KS=0.0949 | p=0.7692
+2026-05-26 11:51:09,144 [INFO] No drift       | Hour                                | KS=0.0776 | p=0.9249
+2026-05-26 11:51:09,144 [INFO] No drift       | DayOfWeek                           | KS=0.0463 | p=0.9999
+2026-05-26 11:51:09,145 [INFO] No drift       | Month                               | KS=0.0000 | p=1.0000
+2026-05-26 11:51:09,145 [INFO] Drift summary: 0/8 features drifted

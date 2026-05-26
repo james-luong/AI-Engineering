@@ -70,27 +70,28 @@ jobs:
             echo "::warning::No new_data.csv — skipping retraining"
           fi
 
-      # ── 7. Preprocess new data ─────────────────────────────────────────────────
+      # ── 7. Train model first ──────────────────────────────────────────────────
+      # model.py runs before preprocess_new_data.py because it creates the
+      # preprocessing artifacts (scalers, bin_edges, feature_columns) that
+      # preprocess_new_data.py depends on. On a cold start (empty DVC remote)
+      # those files don't exist until model.py generates them.
+      # model.py already merges data/new_data.csv internally before training.
+      - name: Train model
+        if: steps.check_data.outputs.new_data_exists == 'true'
+        run: python src/model.py
+
+      # ── 8. Preprocess new data (needs artifacts from step 7) ──────────────────
+      # Generates artifacts/data/X_new.npy for drift detection.
       - name: Preprocess new data
         if: steps.check_data.outputs.new_data_exists == 'true'
         run: python src/preprocess_new_data.py
 
-      # ── 8. Drift check (pre-retrain) ──────────────────────────────────────────
-      - name: Run drift check
-        if: steps.check_data.outputs.new_data_exists == 'true'
-        run: python src/monitor.py --mode drift
-
-      # ── 9. Retrain SVM model ──────────────────────────────────────────────────
-      - name: Retrain model
-        if: steps.check_data.outputs.new_data_exists == 'true'
-        run: python src/model.py
-
-      # ── 10. Evaluate retrained model ──────────────────────────────────────────
+      # ── 9. Evaluate retrained model ───────────────────────────────────────────
       - name: Evaluate model
         if: steps.check_data.outputs.new_data_exists == 'true'
         run: python src/evaluate.py
 
-      # ── 11. Full monitoring suite ─────────────────────────────────────────────
+      # ── 10. Full monitoring suite (drift + performance) ───────────────────────
       - name: Run full monitoring
         if: steps.check_data.outputs.new_data_exists == 'true'
         run: python src/monitor.py --mode full

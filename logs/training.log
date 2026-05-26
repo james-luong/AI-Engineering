@@ -54,3 +54,47 @@ High      29
 2026-05-26 00:29:07,243 [INFO] ============================================================
 2026-05-26 00:29:07,243 [INFO]   Preprocessing complete
 2026-05-26 00:29:07,243 [INFO] ============================================================
+2026-05-26 11:50:16,361 [INFO] ============================================================
+2026-05-26 11:50:16,361 [INFO]   MLOps Pipeline — TPC SVM Model Training
+2026-05-26 11:50:16,361 [INFO] ============================================================
+2026-05-26 11:50:16,361 [INFO] Loading training data from train/train.csv
+2026-05-26 11:50:16,365 [INFO] Loading test data from test/test.csv
+2026-05-26 11:50:16,365 [INFO] New data detected at data/new_data.csv — merging into training set
+2026-05-26 11:50:16,366 [INFO] Training set expanded: 450 → 501 rows (+51)
+2026-05-26 11:50:16,380 [INFO] Train class distribution:
+Target_Class
+Low       167
+Medium    167
+High      167
+2026-05-26 11:50:16,381 [INFO] Test  class distribution:
+Target_Class
+Low       37
+Medium    33
+High      29
+2026-05-26 11:50:16,382 [INFO] Preprocessing features …
+2026-05-26 11:50:16,400 [INFO] Preprocessing done | train=(501, 8) | test=(99, 8) | classes=['High', 'Low', 'Medium']
+2026-05-26 11:50:16,400 [INFO] Training SVM (C=10, gamma=0.1, kernel=rbf) …
+2026-05-26 11:50:16,419 [INFO] Train accuracy = 0.9840
+2026-05-26 11:50:16,419 [INFO] Test  accuracy = 0.9091
+2026-05-26 11:50:16,420 [INFO] Model saved → artifacts/models/model.pkl
+2026-05-26 11:50:16,420 [INFO] Metadata saved | version=20260526_015016
+2026-05-26 11:50:16,420 [INFO] ============================================================
+2026-05-26 11:50:16,420 [INFO]   Training complete | test accuracy = 0.9091
+2026-05-26 11:50:16,420 [INFO] ============================================================
+2026-05-26 11:51:00,810 [INFO] ============================================================
+2026-05-26 11:51:00,810 [INFO]   MLOps Pipeline — TPC Model Evaluation
+2026-05-26 11:51:00,810 [INFO] ============================================================
+2026-05-26 11:51:00,810 [INFO] Loading SVM model from artifacts/models/model.pkl
+2026-05-26 11:51:00,882 [INFO] Loading test arrays from artifacts/data/
+2026-05-26 11:51:00,882 [INFO] Loading encoder from artifacts/preprocessing/encoder.pkl
+2026-05-26 11:51:00,883 [INFO] Running inference on test set …
+2026-05-26 11:51:00,892 [INFO] Accuracy  = 0.9091
+2026-05-26 11:51:00,892 [INFO] Precision = 0.9119
+2026-05-26 11:51:00,892 [INFO] Recall    = 0.9091
+2026-05-26 11:51:00,892 [INFO] F1 Score  = 0.9096
+2026-05-26 11:51:00,892 [INFO] ROC-AUC   = 0.9815
+2026-05-26 11:51:00,892 [INFO] Evaluation metrics saved → artifacts/metrics/evaluation_metrics.json
+2026-05-26 11:51:00,893 [INFO] HTML performance report saved → reports/performance_report.html
+2026-05-26 11:51:00,893 [INFO] ============================================================
+2026-05-26 11:51:00,893 [INFO]   Evaluation complete
+2026-05-26 11:51:00,893 [INFO] ============================================================

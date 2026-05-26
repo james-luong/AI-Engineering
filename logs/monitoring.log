@@ -6,3 +6,11 @@
 2026-05-26 00:29:07,626 [INFO] No baseline found — saving current metrics as baseline
 2026-05-26 00:29:07,628 [INFO] Monitoring dashboard saved → reports/monitoring_dashboard.html
 2026-05-26 00:29:07,628 [INFO] === FULL MONITORING COMPLETE ===
+2026-05-26 11:51:09,141 [INFO] === MODE: FULL MONITORING ===
+2026-05-26 11:51:09,145 [INFO] Running data quality checks …
+2026-05-26 11:51:09,145 [INFO] Data quality: PASSED (0 issues)
+2026-05-26 11:51:09,145 [INFO] Drift report saved → reports/drift_report.json
+2026-05-26 11:51:09,145 [INFO] Running performance monitoring …
+2026-05-26 11:51:09,146 [INFO] Performance OK: 0.9293 → 0.9091 (Δ=+0.0202)
+2026-05-26 11:51:09,148 [INFO] Monitoring dashboard saved → reports/monitoring_dashboard.html
+2026-05-26 11:51:09,148 [INFO] === FULL MONITORING COMPLETE ===

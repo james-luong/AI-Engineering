@@ -1,6 +1,6 @@
 {
   "drift": {
-    "timestamp": "2026-05-26T00:29:07.623919Z",
+    "timestamp": "2026-05-26T01:51:09.145184Z",
     "n_features_tested": 8,
     "n_drifted": 0,
     "drifted_features": [],
@@ -8,38 +8,38 @@
     "overall_drift": false,
     "per_feature": {
       "Temperature": {
-        "ks_statistic": 0.09333333333333334,
-        "p_value": 0.8013060241866001,
+        "ks_statistic": 0.09317365269461078,
+        "p_value": 0.7868920288590762,
         "drifted": false
       },
       "Humidity": {
-        "ks_statistic": 0.07777777777777778,
-        "p_value": 0.933287360646971,
+        "ks_statistic": 0.08159680638722555,
+        "p_value": 0.8951989904978943,
         "drifted": false
       },
       "Wind Speed": {
-        "ks_statistic": 0.1111111111111111,
-        "p_value": 0.6042162601667452,
+        "ks_statistic": 0.13313373253493013,
+        "p_value": 0.3603170277457307,
         "drifted": false
       },
       "general diffuse flows": {
-        "ks_statistic": 0.07777777777777778,
-        "p_value": 0.933287360646971,
+        "ks_statistic": 0.10151696606786427,
+        "p_value": 0.6937716037211031,
         "drifted": false
       },
       "diffuse flows": {
-        "ks_statistic": 0.10444444444444445,
-        "p_value": 0.6797915647922581,
+        "ks_statistic": 0.09489021956087824,
+        "p_value": 0.7692066422577927,
         "drifted": false
       },
       "Hour": {
-        "ks_statistic": 0.08666666666666667,
-        "p_value": 0.8655391526552285,
+        "ks_statistic": 0.07756487025948104,
+        "p_value": 0.9249225530872474,
         "drifted": false
       },
       "DayOfWeek": {
-        "ks_statistic": 0.051111111111111114,
-        "p_value": 0.9995130866930232,
+        "ks_statistic": 0.04630738522954092,
+        "p_value": 0.9998754507233572,
         "drifted": false
       },
       "Month": {
@@ -50,7 +50,7 @@
     }
   },
   "data_quality": {
-    "timestamp": "2026-05-26T00:29:07.624695Z",
+    "timestamp": "2026-05-26T01:51:09.145628Z",
     "n_samples": 50,
     "n_features": 8,
     "total_issues": 0,
