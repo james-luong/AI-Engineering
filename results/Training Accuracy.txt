@@ -1,0 +1,50 @@
+Set 1: Original Features:
+  - Decision Tree Accuracy: 0.6572
+  - Baseline SVM CV Accuracy: 0.5478
+  - Baseline SVM CV Std Dev: 0.0092
+  - Tuned SVM CV Accuracy: 0.5744
+  - Tuned SVM CV Std Dev: 0.0048
+  - Parameters Tuning Results: {'C': 1, 'gamma': 0.001, 'kernel': 'rbf'}
+  - SVM with K-Best Accuracy: 0.5688
+  - SVM with PCA Accuracy: 0.5260
+
+Set 2: Top Correlated Features:
+  - Decision Tree Accuracy: 0.8873
+  - Baseline SVM CV Accuracy: 0.8114
+  - Baseline SVM CV Std Dev: 0.0117
+  - Tuned SVM CV Accuracy: 0.4556
+  - Tuned SVM CV Std Dev: 0.0087
+  - Parameters Tuning Results: {'C': 10, 'gamma': 0.001, 'kernel': 'rbf'}
+  - SVM with K-Best Accuracy: 0.4498
+  - SVM with PCA Accuracy: 0.4498
+
+Set 3: Scaled + Engineered Features:
+  - Decision Tree Accuracy: 0.9078
+  - Baseline SVM CV Accuracy: 0.7980
+  - Baseline SVM CV Std Dev: 0.0053
+  - Tuned SVM CV Accuracy: 0.8730
+  - Tuned SVM CV Std Dev: 0.0049
+  - Parameters Tuning Results: {'C': 10, 'gamma': 0.1, 'kernel': 'rbf'}
+  - SVM with K-Best Accuracy: 0.8226
+  - SVM with PCA Accuracy: 0.8652
+
+Set 4: PCA Features:
+  - Decision Tree Accuracy: 0.9071
+  - Baseline SVM CV Accuracy: 0.7930
+  - Baseline SVM CV Std Dev: 0.0152
+  - Tuned SVM CV Accuracy: 0.8620
+  - Tuned SVM CV Std Dev: 0.0073
+  - Parameters Tuning Results: {'C': 1, 'gamma': 1, 'kernel': 'rbf'}
+  - SVM with K-Best Accuracy: 0.8648
+  - SVM with PCA Accuracy: 0.8648
+
+Set 5: Domain Knowledge Features:
+  - Decision Tree Accuracy: 0.8997
+  - Baseline SVM CV Accuracy: 0.7830
+  - Baseline SVM CV Std Dev: 0.0079
+  - Tuned SVM CV Accuracy: 0.8658
+  - Tuned SVM CV Std Dev: 0.0035
+  - Parameters Tuning Results: {'C': 10, 'gamma': 0.1, 'kernel': 'rbf'}
+  - SVM with K-Best Accuracy: 0.8622
+  - SVM with PCA Accuracy: 0.8666
+

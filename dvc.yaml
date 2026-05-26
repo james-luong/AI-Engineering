@@ -1,0 +1,92 @@
+# dvc.yaml
+# =========
+# DVC pipeline — Tetuan City Power Consumption MLOps pipeline.
+#
+# Stage order (resolved by DVC from dep/out graph):
+#   preprocess_new_data  →  train  →  evaluate  →  monitor
+#
+# Commands:
+#   dvc repro              run full pipeline (skips unchanged stages)
+#   dvc repro train        run train stage + dependants only
+#   dvc dag                visualise the dependency graph
+#   dvc push               upload cached outputs to DagsHub remote
+#   dvc pull               download cached outputs from DagsHub remote
+
+stages:
+
+  # ── Stage 1: Preprocess new data ──────────────────────────────────────────
+  preprocess_new_data:
+    cmd: python src/preprocess_new_data.py
+    deps:
+      - src/preprocess_new_data.py
+      - data/new_data.csv
+      - artifacts/preprocessing/scaler_gaussian.pkl
+      - artifacts/preprocessing/scaler_outlier.pkl
+      - artifacts/preprocessing/bin_edges.json
+      - artifacts/preprocessing/feature_columns.json
+    outs:
+      - artifacts/data/X_new.npy:
+          cache: true
+
+  # ── Stage 2: Train (or retrain) the SVM model ─────────────────────────────
+  train:
+    cmd: python src/model.py
+    deps:
+      - src/model.py
+      - train/train.csv
+      - data/new_data.csv
+    outs:
+      - artifacts/models/model.pkl:
+          cache: true
+      - artifacts/data/X_train.npy:
+          cache: true
+      - artifacts/data/y_train.npy:
+          cache: true
+      - artifacts/data/X_test.npy:
+          cache: true
+      - artifacts/data/y_test.npy:
+          cache: true
+      - artifacts/preprocessing/scaler_gaussian.pkl:
+          cache: true
+      - artifacts/preprocessing/scaler_outlier.pkl:
+          cache: true
+      - artifacts/preprocessing/encoder.pkl:
+          cache: true
+      - artifacts/preprocessing/bin_edges.json:
+          cache: true
+      - artifacts/preprocessing/feature_columns.json:
+          cache: true
+      - artifacts/metrics/training_history.json:
+          cache: false
+
+  # ── Stage 3: Evaluate the trained model ───────────────────────────────────
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+      - src/evaluate.py
+      - artifacts/models/model.pkl
+      - artifacts/data/X_test.npy
+      - artifacts/data/y_test.npy
+      - artifacts/preprocessing/encoder.pkl
+    outs:
+      - artifacts/metrics/evaluation_metrics.json:
+          cache: false
+      - reports/performance_report.html:
+          cache: false
+
+  # ── Stage 4: Monitor drift and performance ─────────────────────────────────
+  monitor:
+    cmd: python src/monitor.py --mode full
+    deps:
+      - src/monitor.py
+      - artifacts/data/X_train.npy
+      - artifacts/data/X_new.npy
+      - artifacts/metrics/evaluation_metrics.json
+      - artifacts/preprocessing/feature_columns.json
+    outs:
+      - reports/drift_report.json:
+          cache: false
+      - reports/monitoring_dashboard.html:
+          cache: false
+      - artifacts/metrics/monitoring_metrics.json:
+          cache: false

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TPC Model Performance Report</title>
+  <style>
+    * { box-sizing:border-box; }
+    body  { font-family:'Segoe UI',Arial,sans-serif; margin:40px; background:#f5f7fa; color:#2c3e50; }
+    h1    { border-bottom:3px solid #2980b9; padding-bottom:8px; }
+    h2    { color:#2980b9; margin-top:30px; }
+    p.ts  { color:#95a5a6; font-size:.9em; }
+    p.sub { color:#555; margin-bottom:24px; }
+    .cards{ display:flex; gap:16px; flex-wrap:wrap; margin:20px 0 32px; }
+    .card { background:#fff; border-radius:10px; padding:18px 28px;
+              box-shadow:0 2px 8px rgba(0,0,0,.09); text-align:center; min-width:130px; }
+    .card .lbl { font-size:.78em; text-transform:uppercase; letter-spacing:.04em; color:#7f8c8d; }
+    .card .val { font-size:1.9em; font-weight:700; margin-top:6px; color:#2c3e50; }
+    table { border-collapse:collapse; width:100%; background:#fff; border-radius:8px;
+             overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.07); margin-bottom:24px; }
+    th,td { padding:10px 15px; border-bottom:1px solid #ecf0f1; }
+    thead th { background:#2980b9; color:#fff; }
+    tr:last-child td { border-bottom:none; }
+    td.hl { background:#d5f5e3; font-weight:700; }
+    tbody tr:hover td { background:#eaf4ff; }
+  </style>
+</head>
+<body>
+  <h1>TPC Model Performance Report</h1>
+  <p class="ts">Generated: 2026-05-26T00:29:06.375651Z &nbsp;|&nbsp; Test samples: 99</p>
+  <p class="sub">Model: SVM (RBF kernel, C=10, γ=0.1) &nbsp;|&nbsp;
+     Dataset: Tetuan City Power Consumption &nbsp;|&nbsp;
+     Target: Zone 1 Power Consumption (Low / Medium / High)</p>
+
+  <h2>Summary Metrics</h2>
+  <div class="cards">
+    <div class="card"><div class="lbl">Accuracy</div> <div class="val">92.93%</div></div>
+    <div class="card"><div class="lbl">Precision</div><div class="val">93.05%</div></div>
+    <div class="card"><div class="lbl">Recall</div>   <div class="val">92.93%</div></div>
+    <div class="card"><div class="lbl">F1 Score</div> <div class="val">92.98%</div></div>
+    <div class="card"><div class="lbl">ROC-AUC</div>  <div class="val">98.07%</div></div>
+  </div>
+
+  <h2>Per-Class Breakdown</h2>
+  <table>
+    <thead><tr><th>Class</th><th>Precision</th><th>Recall</th><th>F1</th><th>Support</th></tr></thead>
+    <tbody><tr><td>High</td><td>0.8966</td><td>0.8966</td><td>0.8966</td><td>29</td></tr><tr><td>Low</td><td>1.0000</td><td>0.9730</td><td>0.9863</td><td>37</td></tr><tr><td>Medium</td><td>0.8824</td><td>0.9091</td><td>0.8955</td><td>33</td></tr></tbody>
+  </table>
+
+  <h2>Confusion Matrix</h2>
+  <p style="color:#555;font-size:.9em">Diagonal cells (green) = correct predictions</p>
+  <table>
+    <thead><tr><th>Actual \ Predicted</th><th>High</th><th>Low</th><th>Medium</th></tr></thead>
+    <tbody><tr><th>High</th><td class="hl">26</td><td>0</td><td>3</td></tr><tr><th>Low</th><td>0</td><td class="hl">36</td><td>1</td></tr><tr><th>Medium</th><td>3</td><td>0</td><td class="hl">30</td></tr></tbody>
+  </table>
+</body>
+</html>

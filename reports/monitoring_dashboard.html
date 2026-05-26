@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TPC MLOps Monitoring Dashboard</title>
+  <style>
+    * { box-sizing:border-box; }
+    body { font-family:'Segoe UI',Arial,sans-serif; margin:40px; background:#f0f4f8; color:#2c3e50; }
+    h1   { border-bottom:3px solid #8e44ad; padding-bottom:8px; }
+    h2   { color:#8e44ad; margin-top:30px; }
+    p.ts { color:#95a5a6; font-size:.9em; }
+    p.sub { color:#555; margin-bottom:24px; }
+    .summary { display:flex; gap:16px; flex-wrap:wrap; margin:20px 0 32px; }
+    .card    { background:#fff; border-radius:10px; padding:18px 28px;
+                box-shadow:0 2px 8px rgba(0,0,0,.09); text-align:center; min-width:160px; }
+    .card .lbl { font-size:.78em; text-transform:uppercase; color:#7f8c8d; }
+    .card .val { margin-top:8px; }
+    table { border-collapse:collapse; width:100%; background:#fff; border-radius:8px;
+             overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.07); margin-bottom:24px; }
+    th,td { padding:10px 15px; border-bottom:1px solid #ecf0f1; text-align:left; }
+    thead th { background:#8e44ad; color:#fff; }
+    tr:last-child td { border-bottom:none; }
+    tbody tr:hover td { background:#f5eef8; }
+  </style>
+</head>
+<body>
+  <h1>TPC MLOps Monitoring Dashboard</h1>
+  <p class="ts">Generated: 2026-05-26T00:29:07.627403Z</p>
+  <p class="sub">Dataset: Tetuan City Power Consumption &nbsp;|&nbsp;
+     Model: SVM (RBF, C=10, γ=0.1) &nbsp;|&nbsp;
+     Target: Zone 1 Power Consumption (Low / Medium / High)</p>
+
+  <div class="summary">
+    <div class="card"><div class="lbl">Data Drift</div>   <div class="val"><span style="background:#27ae60;color:#fff;padding:4px 12px;border-radius:12px;font-size:.85em;font-weight:600">No Drift</span></div></div>
+    <div class="card"><div class="lbl">Data Quality</div> <div class="val"><span style="background:#27ae60;color:#fff;padding:4px 12px;border-radius:12px;font-size:.85em;font-weight:600">Passed</span></div></div>
+    <div class="card"><div class="lbl">Performance</div>  <div class="val"><span style="background:#27ae60;color:#fff;padding:4px 12px;border-radius:12px;font-size:.85em;font-weight:600">OK</span></div></div>
+  </div>
+
+  <h2>Feature Drift (Kolmogorov-Smirnov Test)</h2>
+  <p style="color:#555;font-size:.9em">
+    Threshold: p &lt; 0.05 → drift flagged.
+    Features: Temperature, Humidity, Wind Speed, general diffuse flows, diffuse flows, Hour, DayOfWeek, Month.
+  </p>
+  <table>
+    <thead><tr><th>Feature</th><th>KS Statistic</th><th>p-value</th><th>Drifted?</th></tr></thead>
+    <tbody><tr style="background:#eafaf1"><td>Temperature</td><td>0.0933</td><td>0.8013</td><td>No</td></tr><tr style="background:#eafaf1"><td>Humidity</td><td>0.0778</td><td>0.9333</td><td>No</td></tr><tr style="background:#eafaf1"><td>Wind Speed</td><td>0.1111</td><td>0.6042</td><td>No</td></tr><tr style="background:#eafaf1"><td>general diffuse flows</td><td>0.0778</td><td>0.9333</td><td>No</td></tr><tr style="background:#eafaf1"><td>diffuse flows</td><td>0.1044</td><td>0.6798</td><td>No</td></tr><tr style="background:#eafaf1"><td>Hour</td><td>0.0867</td><td>0.8655</td><td>No</td></tr><tr style="background:#eafaf1"><td>DayOfWeek</td><td>0.0511</td><td>0.9995</td><td>No</td></tr><tr style="background:#eafaf1"><td>Month</td><td>0.0000</td><td>1.0000</td><td>No</td></tr></tbody>
+  </table>
+
+  <h2>Data Quality</h2>
+  <table>
+    <thead><tr><th>Feature</th><th>Null %</th><th>Inf Count</th><th>Outlier %</th><th>Issues</th></tr></thead>
+    <tbody><tr style="background:#eafaf1"><td>Temperature</td><td>0.0%</td><td>0</td><td>0.0%</td><td>None</td></tr><tr style="background:#eafaf1"><td>Humidity</td><td>0.0%</td><td>0</td><td>0.0%</td><td>None</td></tr><tr style="background:#eafaf1"><td>Wind Speed</td><td>0.0%</td><td>0</td><td>0.0%</td><td>None</td></tr><tr style="background:#eafaf1"><td>general diffuse flows</td><td>0.0%</td><td>0</td><td>0.0%</td><td>None</td></tr><tr style="background:#eafaf1"><td>diffuse flows</td><td>0.0%</td><td>0</td><td>0.0%</td><td>None</td></tr><tr style="background:#eafaf1"><td>Hour</td><td>0.0%</td><td>0</td><td>0.0%</td><td>None</td></tr><tr style="background:#eafaf1"><td>DayOfWeek</td><td>0.0%</td><td>0</td><td>0.0%</td><td>None</td></tr><tr style="background:#eafaf1"><td>Month</td><td>0.0%</td><td>0</td><td>0.0%</td><td>None</td></tr></tbody>
+  </table>
+
+  <h2>Performance vs Baseline</h2>
+  <table>
+    <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+    <tbody><tr><td>Current Accuracy</td><td>0.9293</td></tr><tr><td>Baseline Accuracy</td><td>N/A</td></tr><tr><td>Accuracy Drop (Δ)</td><td>N/A</td></tr><tr><td>F1 Score</td><td>0.9298</td></tr><tr><td>ROC-AUC</td><td>0.9807</td></tr></tbody>
+  </table>
+</body>
+</html>

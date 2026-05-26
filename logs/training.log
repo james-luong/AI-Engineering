@@ -1,0 +1,56 @@
+2026-05-26 00:29:01,994 [INFO] ============================================================
+2026-05-26 00:29:01,994 [INFO]   MLOps Pipeline — TPC SVM Model Training
+2026-05-26 00:29:01,994 [INFO] ============================================================
+2026-05-26 00:29:01,994 [INFO] Loading training data from train/train.csv
+2026-05-26 00:29:01,999 [INFO] Loading test data from test/test.csv
+2026-05-26 00:29:02,000 [INFO] New data detected at data/new_data.csv — merging into training set
+2026-05-26 00:29:02,002 [INFO] Training set expanded: 400 → 450 rows (+50)
+2026-05-26 00:29:02,008 [INFO] Train class distribution:
+Target_Class
+Low       150
+Medium    150
+High      150
+2026-05-26 00:29:02,009 [INFO] Test  class distribution:
+Target_Class
+Low       37
+Medium    33
+High      29
+2026-05-26 00:29:02,010 [INFO] Preprocessing features …
+2026-05-26 00:29:02,021 [INFO] Preprocessing done | train=(450, 8) | test=(99, 8) | classes=['High', 'Low', 'Medium']
+2026-05-26 00:29:02,022 [INFO] Training SVM (C=10, gamma=0.1, kernel=rbf) …
+2026-05-26 00:29:02,036 [INFO] Train accuracy = 0.9800
+2026-05-26 00:29:02,036 [INFO] Test  accuracy = 0.9293
+2026-05-26 00:29:02,039 [INFO] Model saved → artifacts/models/model.pkl
+2026-05-26 00:29:02,042 [INFO] Metadata saved | version=20260526_002902
+2026-05-26 00:29:02,042 [INFO] ============================================================
+2026-05-26 00:29:02,042 [INFO]   Training complete | test accuracy = 0.9293
+2026-05-26 00:29:02,043 [INFO] ============================================================
+2026-05-26 00:29:06,354 [INFO] ============================================================
+2026-05-26 00:29:06,354 [INFO]   MLOps Pipeline — TPC Model Evaluation
+2026-05-26 00:29:06,355 [INFO] ============================================================
+2026-05-26 00:29:06,355 [INFO] Loading SVM model from artifacts/models/model.pkl
+2026-05-26 00:29:06,367 [INFO] Loading test arrays from artifacts/data/
+2026-05-26 00:29:06,368 [INFO] Loading encoder from artifacts/preprocessing/encoder.pkl
+2026-05-26 00:29:06,369 [INFO] Running inference on test set …
+2026-05-26 00:29:06,375 [INFO] Accuracy  = 0.9293
+2026-05-26 00:29:06,375 [INFO] Precision = 0.9305
+2026-05-26 00:29:06,376 [INFO] Recall    = 0.9293
+2026-05-26 00:29:06,376 [INFO] F1 Score  = 0.9298
+2026-05-26 00:29:06,376 [INFO] ROC-AUC   = 0.9807
+2026-05-26 00:29:06,377 [INFO] Evaluation metrics saved → artifacts/metrics/evaluation_metrics.json
+2026-05-26 00:29:06,378 [INFO] HTML performance report saved → reports/performance_report.html
+2026-05-26 00:29:06,378 [INFO] ============================================================
+2026-05-26 00:29:06,379 [INFO]   Evaluation complete
+2026-05-26 00:29:06,379 [INFO] ============================================================
+2026-05-26 00:29:06,987 [INFO] ============================================================
+2026-05-26 00:29:06,991 [INFO]   MLOps Pipeline — Preprocess New TPC Data
+2026-05-26 00:29:06,991 [INFO] ============================================================
+2026-05-26 00:29:06,994 [INFO] Loaded 50 rows from data/new_data.csv
+2026-05-26 00:29:06,994 [INFO] Column validation passed ✓
+2026-05-26 00:29:07,231 [INFO] Scaling applied | output shape: (50, 8)
+2026-05-26 00:29:07,233 [INFO] Saved X_new.npy → artifacts/data/X_new.npy (shape=(50, 8))
+2026-05-26 00:29:07,236 [INFO] Backed up train.csv → train/train_backup_20260526_002907.csv
+2026-05-26 00:29:07,243 [INFO] train.csv updated: 400 → 450 rows (+50 new, 0 duplicates dropped)
+2026-05-26 00:29:07,243 [INFO] ============================================================
+2026-05-26 00:29:07,243 [INFO]   Preprocessing complete
+2026-05-26 00:29:07,243 [INFO] ============================================================

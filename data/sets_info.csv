@@ -1,0 +1,6 @@
+Sets,Decision Tree Accuracy,Baseline SVM CV Accuracy,Baseline SVM CV Std Dev,Tuned SVM CV Accuracy,Tuned SVM CV Std Dev,Parameters Tuning Results,SVM with K-Best Accuracy,SVM with PCA Accuracy
+Set 1: Original Features,0.6572078907435508,0.5478000000000001,0.009239047569960886,0.5744,0.004841487374764086,"{'C': 1, 'gamma': 0.001, 'kernel': 'rbf'}",0.5688,0.526
+Set 2: Top Correlated Features,0.8872534142640364,0.8113999999999999,0.011689311356961933,0.4556,0.008708616422830884,"{'C': 10, 'gamma': 0.001, 'kernel': 'rbf'}",0.4498,0.4498
+Set 3: Scaled + Engineered Features,0.907814871016692,0.798,0.005291502622129186,0.873,0.004857983120596452,"{'C': 10, 'gamma': 0.1, 'kernel': 'rbf'}",0.8226,0.8652
+Set 4: PCA Features,0.9070561456752656,0.7929999999999999,0.015178932768808199,0.8619999999999999,0.007293833011524194,"{'C': 1, 'gamma': 1, 'kernel': 'rbf'}",0.8648,0.8648
+Set 5: Domain Knowledge Features,0.8996965098634294,0.783,0.007924645102463585,0.8657999999999999,0.0035440090293338733,"{'C': 10, 'gamma': 0.1, 'kernel': 'rbf'}",0.8622,0.8666

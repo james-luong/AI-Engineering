@@ -1,0 +1,59 @@
+name: Train ML Model
+
+on:
+  push:
+    branches: [ main ]        # runs every time you push to main
+  pull_request:
+    branches: [ main ]        # runs on pull requests to main
+  workflow_dispatch:           # allows manual trigger from GitHub UI
+
+jobs:
+  train:
+    runs-on: ubuntu-latest    # GitHub-hosted Linux runner (free)
+
+    steps:
+      # 1. Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # 3. Cache pip packages so repeat runs are faster
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      # 4. Install dependencies from requirements.txt
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # 5. Train the model — runs model.py
+      - name: Train model
+        run: python model.py
+
+      # 6. Upload the saved plot and metrics as artefacts
+      #    so you can download them from the GitHub Actions UI
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: model-results
+          path: |
+            results/missing_values_heatmap.png
+            results/correlation_heatmap.png
+            results/boxplots_numerical.png
+            results/pairplot_top_features.png
+            results/power_consumption_correlation.png
+            results/scatter_top_feature.png
+            results/target_distribution.png
+            results/univariatee_distribution.png
+            results/Training Accuracy.txt
+          compression-level: 9
+          retention-days: 90

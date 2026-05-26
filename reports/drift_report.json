@@ -1,0 +1,110 @@
+{
+  "drift": {
+    "timestamp": "2026-05-26T00:29:07.623919Z",
+    "n_features_tested": 8,
+    "n_drifted": 0,
+    "drifted_features": [],
+    "drift_threshold": 0.05,
+    "overall_drift": false,
+    "per_feature": {
+      "Temperature": {
+        "ks_statistic": 0.09333333333333334,
+        "p_value": 0.8013060241866001,
+        "drifted": false
+      },
+      "Humidity": {
+        "ks_statistic": 0.07777777777777778,
+        "p_value": 0.933287360646971,
+        "drifted": false
+      },
+      "Wind Speed": {
+        "ks_statistic": 0.1111111111111111,
+        "p_value": 0.6042162601667452,
+        "drifted": false
+      },
+      "general diffuse flows": {
+        "ks_statistic": 0.07777777777777778,
+        "p_value": 0.933287360646971,
+        "drifted": false
+      },
+      "diffuse flows": {
+        "ks_statistic": 0.10444444444444445,
+        "p_value": 0.6797915647922581,
+        "drifted": false
+      },
+      "Hour": {
+        "ks_statistic": 0.08666666666666667,
+        "p_value": 0.8655391526552285,
+        "drifted": false
+      },
+      "DayOfWeek": {
+        "ks_statistic": 0.051111111111111114,
+        "p_value": 0.9995130866930232,
+        "drifted": false
+      },
+      "Month": {
+        "ks_statistic": 0.0,
+        "p_value": 1.0,
+        "drifted": false
+      }
+    }
+  },
+  "data_quality": {
+    "timestamp": "2026-05-26T00:29:07.624695Z",
+    "n_samples": 50,
+    "n_features": 8,
+    "total_issues": 0,
+    "issues": [],
+    "per_feature": {
+      "Temperature": {
+        "null_fraction": 0.0,
+        "inf_count": 0,
+        "outlier_fraction": 0.0,
+        "issues": []
+      },
+      "Humidity": {
+        "null_fraction": 0.0,
+        "inf_count": 0,
+        "outlier_fraction": 0.0,
+        "issues": []
+      },
+      "Wind Speed": {
+        "null_fraction": 0.0,
+        "inf_count": 0,
+        "outlier_fraction": 0.0,
+        "issues": []
+      },
+      "general diffuse flows": {
+        "null_fraction": 0.0,
+        "inf_count": 0,
+        "outlier_fraction": 0.0,
+        "issues": []
+      },
+      "diffuse flows": {
+        "null_fraction": 0.0,
+        "inf_count": 0,
+        "outlier_fraction": 0.0,
+        "issues": []
+      },
+      "Hour": {
+        "null_fraction": 0.0,
+        "inf_count": 0,
+        "outlier_fraction": 0.0,
+        "issues": []
+      },
+      "DayOfWeek": {
+        "null_fraction": 0.0,
+        "inf_count": 0,
+        "outlier_fraction": 0.0,
+        "issues": []
+      },
+      "Month": {
+        "null_fraction": 0.0,
+        "inf_count": 0,
+        "outlier_fraction": 0.0,
+        "issues": []
+      }
+    },
+    "passed": true
+  }
+}

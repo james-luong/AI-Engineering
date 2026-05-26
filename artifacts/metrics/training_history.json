@@ -1,0 +1,15 @@
+{
+  "model": "SVC",
+  "kernel": "rbf",
+  "C": 10,
+  "gamma": 0.1,
+  "train_accuracy": 0.98,
+  "test_accuracy": 0.9292929292929293,
+  "n_support_vectors": 203,
+  "classes": [
+    "High",
+    "Low",
+    "Medium"
+  ],
+  "timestamp": "2026-05-26T00:29:02.039682Z"
+}

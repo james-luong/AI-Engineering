@@ -1,0 +1,138 @@
+name: Retrain TPC Model on New Data
+
+# ── Trigger ────────────────────────────────────────────────────────────────────
+# Fires only when data/new_data.csv is pushed to main.
+# The existing train.yml still runs on every push for the original model.py.
+on:
+  push:
+    paths:
+      - 'data/new_data.csv'
+    branches:
+      - main
+
+jobs:
+  retrain:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      # ── 1. Checkout ───────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ── 2. Python ─────────────────────────────────────────────────────────────
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      # ── 3. Dependencies ───────────────────────────────────────────────────────
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install dvc pandas numpy scikit-learn joblib scipy
+
+      # ── 4. DVC remote (DagsHub) ───────────────────────────────────────────────
+      - name: Configure DVC remote
+        env:
+          DAGSHUB_USERNAME: ${{ secrets.DAGSHUB_USERNAME }}
+          DAGSHUB_TOKEN:    ${{ secrets.DAGSHUB_TOKEN }}
+          DAGSHUB_REPO:     ${{ secrets.DAGSHUB_REPO }}
+        run: |
+          dvc remote add -d origin \
+            https://dagshub.com/${DAGSHUB_USERNAME}/${DAGSHUB_REPO}.dvc
+          dvc remote modify origin --local auth basic
+          dvc remote modify origin --local user     $DAGSHUB_USERNAME
+          dvc remote modify origin --local password $DAGSHUB_TOKEN
+
+      # ── 5. Pull existing artifacts ─────────────────────────────────────────────
+      - name: Pull DVC artifacts
+        run: dvc pull
+
+      # ── 6. Detect new data ─────────────────────────────────────────────────────
+      - name: Check for new data
+        id: check_data
+        run: |
+          if [ -f "data/new_data.csv" ]; then
+            ROWS=$(tail -n +2 data/new_data.csv | wc -l)
+            echo "new_data_exists=true" >> $GITHUB_OUTPUT
+            echo "new_rows=$ROWS"       >> $GITHUB_OUTPUT
+            echo "::notice::Found new_data.csv with $ROWS rows"
+          else
+            echo "new_data_exists=false" >> $GITHUB_OUTPUT
+            echo "::warning::No new_data.csv — skipping retraining"
+          fi
+
+      # ── 7. Preprocess new data ─────────────────────────────────────────────────
+      - name: Preprocess new data
+        if: steps.check_data.outputs.new_data_exists == 'true'
+        run: python src/preprocess_new_data.py
+
+      # ── 8. Drift check (pre-retrain) ──────────────────────────────────────────
+      - name: Run drift check
+        if: steps.check_data.outputs.new_data_exists == 'true'
+        run: python src/monitor.py --mode drift
+
+      # ── 9. Retrain SVM model ──────────────────────────────────────────────────
+      - name: Retrain model
+        if: steps.check_data.outputs.new_data_exists == 'true'
+        run: python src/model.py
+
+      # ── 10. Evaluate retrained model ──────────────────────────────────────────
+      - name: Evaluate model
+        if: steps.check_data.outputs.new_data_exists == 'true'
+        run: python src/evaluate.py
+
+      # ── 11. Full monitoring suite ─────────────────────────────────────────────
+      - name: Run full monitoring
+        if: steps.check_data.outputs.new_data_exists == 'true'
+        run: python src/monitor.py --mode full
+
+      # ── 12. Push artifacts to DVC remote ──────────────────────────────────────
+      - name: Push to DVC remote
+        if: steps.check_data.outputs.new_data_exists == 'true'
+        run: dvc push
+
+      # ── 13. Upload reports as GitHub Actions artifacts ─────────────────────────
+      - name: Upload monitoring reports
+        if: steps.check_data.outputs.new_data_exists == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: tpc-monitoring-reports-run-${{ github.run_number }}
+          path: |
+            reports/
+            artifacts/metrics/
+          retention-days: 30
+
+      # ── 14. Commit metrics back to repo ───────────────────────────────────────
+      - name: Commit updated metrics
+        if: steps.check_data.outputs.new_data_exists == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name  "github-actions[bot]"
+          git add artifacts/metrics/ artifacts/metadata/ reports/ dvc.lock || true
+          git diff --cached --quiet || \
+            git commit -m "ci: auto-retrain TPC SVM — ${{ steps.check_data.outputs.new_rows }} new rows [skip ci]"
+          git push
+
+      # ── 15. Summary ───────────────────────────────────────────────────────────
+      - name: Pipeline summary
+        if: steps.check_data.outputs.new_data_exists == 'true'
+        run: |
+          echo "### TPC Retraining Pipeline Complete" >> $GITHUB_STEP_SUMMARY
+          echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| New rows processed | ${{ steps.check_data.outputs.new_rows }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Workflow run | ${{ github.run_number }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Triggered by | ${{ github.actor }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Model | SVM (RBF, C=10, γ=0.1) |" >> $GITHUB_STEP_SUMMARY
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "::error::TPC Retraining pipeline FAILED on run ${{ github.run_number }}"
+          echo "Logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
