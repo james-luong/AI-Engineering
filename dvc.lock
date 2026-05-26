@@ -1,0 +1,162 @@
+schema: '2.0'
+stages:
+  preprocess_new_data:
+    cmd: python src/preprocess_new_data.py
+    deps:
+    - path: artifacts/preprocessing/bin_edges.json
+      hash: md5
+      md5: a1be531848155b4dff68b7805e356be9
+      size: 159
+    - path: artifacts/preprocessing/feature_columns.json
+      hash: md5
+      md5: 9a8902e0e153a29a55ce75cf3604468e
+      size: 426
+    - path: artifacts/preprocessing/scaler_gaussian.pkl
+      hash: md5
+      md5: 32a5b7e1bbbbb5ba959283f44eac0344
+      size: 935
+    - path: artifacts/preprocessing/scaler_outlier.pkl
+      hash: md5
+      md5: 07bb4b04ae7b2abe3094e0499ef78156
+      size: 847
+    - path: data/new_data.csv
+      hash: md5
+      md5: 3d3a5e13822ef34a88ba5d0b9a4d7e4a
+      size: 5123
+    - path: src/preprocess_new_data.py
+      hash: md5
+      md5: df595847b9ccfc226294ba266d6d73f1
+      size: 7763
+    outs:
+    - path: artifacts/data/X_new.npy
+      hash: md5
+      md5: 8fc037153e32bc8a9be7cea48bf4142f
+      size: 1728
+  train:
+    cmd: python src/model.py
+    deps:
+    - path: data/new_data.csv
+      hash: md5
+      md5: 3d3a5e13822ef34a88ba5d0b9a4d7e4a
+      size: 5123
+    - path: src/model.py
+      hash: md5
+      md5: a3c635c1d9f0e33d472c29c61496109f
+      size: 14087
+    - path: train/train.csv
+      hash: md5
+      md5: 6d5ae9e792ec42165c5bb7503ea9b933
+      size: 38831
+    outs:
+    - path: artifacts/data/X_test.npy
+      hash: md5
+      md5: 066504fd5cfc0a9f6e903d83a6282579
+      size: 3296
+    - path: artifacts/data/X_train.npy
+      hash: md5
+      md5: 21e790aebcd6e3042dbd886a99aaad03
+      size: 14528
+    - path: artifacts/data/y_test.npy
+      hash: md5
+      md5: dc62e5ec49c00d3b99dc75e85a32e01f
+      size: 920
+    - path: artifacts/data/y_train.npy
+      hash: md5
+      md5: 77437df5dc061bc9be62619136dc6d9c
+      size: 3728
+    - path: artifacts/metrics/training_history.json
+      hash: md5
+      md5: 926bcd0b3ec3b69530e1f90da8af2b03
+      size: 261
+    - path: artifacts/models/model.pkl
+      hash: md5
+      md5: f6a6e8f947f35b060a0db6ac0c352a67
+      size: 22003
+    - path: artifacts/preprocessing/bin_edges.json
+      hash: md5
+      md5: a1be531848155b4dff68b7805e356be9
+      size: 159
+    - path: artifacts/preprocessing/encoder.pkl
+      hash: md5
+      md5: 841b04dbbb9f6158c0244ced7c52ebeb
+      size: 495
+    - path: artifacts/preprocessing/feature_columns.json
+      hash: md5
+      md5: 9a8902e0e153a29a55ce75cf3604468e
+      size: 426
+    - path: artifacts/preprocessing/scaler_gaussian.pkl
+      hash: md5
+      md5: 32a5b7e1bbbbb5ba959283f44eac0344
+      size: 935
+    - path: artifacts/preprocessing/scaler_outlier.pkl
+      hash: md5
+      md5: 07bb4b04ae7b2abe3094e0499ef78156
+      size: 847
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - path: artifacts/data/X_test.npy
+      hash: md5
+      md5: 066504fd5cfc0a9f6e903d83a6282579
+      size: 3296
+    - path: artifacts/data/y_test.npy
+      hash: md5
+      md5: dc62e5ec49c00d3b99dc75e85a32e01f
+      size: 920
+    - path: artifacts/models/model.pkl
+      hash: md5
+      md5: f6a6e8f947f35b060a0db6ac0c352a67
+      size: 22003
+    - path: artifacts/preprocessing/encoder.pkl
+      hash: md5
+      md5: 841b04dbbb9f6158c0244ced7c52ebeb
+      size: 495
+    - path: src/evaluate.py
+      hash: md5
+      md5: 4c94ece4b972f12f01b62d4e6c8a74a9
+      size: 10877
+    outs:
+    - path: artifacts/metrics/evaluation_metrics.json
+      hash: md5
+      md5: 73e6c2155c6daa93c5a26d88fb3beed0
+      size: 1304
+    - path: reports/performance_report.html
+      hash: md5
+      md5: c66b3384aa6325f809037a77e8fa1d08
+      size: 3038
+  monitor:
+    cmd: python src/monitor.py --mode full
+    deps:
+    - path: artifacts/data/X_new.npy
+      hash: md5
+      md5: 8fc037153e32bc8a9be7cea48bf4142f
+      size: 1728
+    - path: artifacts/data/X_train.npy
+      hash: md5
+      md5: 21e790aebcd6e3042dbd886a99aaad03
+      size: 14528
+    - path: artifacts/metrics/evaluation_metrics.json
+      hash: md5
+      md5: 73e6c2155c6daa93c5a26d88fb3beed0
+      size: 1304
+    - path: artifacts/preprocessing/feature_columns.json
+      hash: md5
+      md5: 9a8902e0e153a29a55ce75cf3604468e
+      size: 426
+    - path: src/monitor.py
+      hash: md5
+      md5: e6ee79bedee2610f98685fdca65f92f6
+      size: 19167
+    outs:
+    - path: artifacts/metrics/monitoring_metrics.json
+      hash: md5
+      md5: f3e1e0c7cec0de90f7949534954078ac
+      size: 185
+    - path: reports/drift_report.json
+      hash: md5
+      md5: 7458698c3af0b4fb6767085c116b6991
+      size: 2630
+    - path: reports/monitoring_dashboard.html
+      hash: md5
+      md5: 1a44c23b848fb1a3e0f6879407f68cce
+      size: 4742
