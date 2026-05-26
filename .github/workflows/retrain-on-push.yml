@@ -51,7 +51,7 @@ jobs:
 
       # ── 5. Pull existing artifacts ─────────────────────────────────────────────
       - name: Pull DVC artifacts
-        run: dvc pull
+        run: dvc pull --force
 
       # ── 6. Detect new data ─────────────────────────────────────────────────────
       - name: Check for new data
