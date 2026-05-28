@@ -1,6 +1,6 @@
 {
   "drift": {
-    "timestamp": "2026-05-26T01:52:32.913170Z",
+    "timestamp": "2026-05-28T05:51:12.868597Z",
     "n_features_tested": 8,
     "n_drifted": 0,
     "drifted_features": [],
@@ -8,38 +8,38 @@
     "overall_drift": false,
     "per_feature": {
       "Temperature": {
-        "ks_statistic": 0.084,
-        "p_value": 0.8843631712771096,
+        "ks_statistic": 0.09668316224285305,
+        "p_value": 0.7592027446888029,
         "drifted": false
       },
       "Humidity": {
-        "ks_statistic": 0.07,
-        "p_value": 0.9702988751069793,
+        "ks_statistic": 0.06829986503619484,
+        "p_value": 0.9751009820212673,
         "drifted": false
       },
       "Wind Speed": {
-        "ks_statistic": 0.1,
-        "p_value": 0.7234971110740552,
+        "ks_statistic": 0.0887898245470533,
+        "p_value": 0.8398195269206779,
         "drifted": false
       },
       "general diffuse flows": {
-        "ks_statistic": 0.07,
-        "p_value": 0.9702988751069793,
+        "ks_statistic": 0.06609136640628195,
+        "p_value": 0.9818444183372601,
         "drifted": false
       },
       "diffuse flows": {
-        "ks_statistic": 0.094,
-        "p_value": 0.7889015220862078,
+        "ks_statistic": 0.08572246533884095,
+        "p_value": 0.8679441618317395,
         "drifted": false
       },
       "Hour": {
-        "ks_statistic": 0.078,
-        "p_value": 0.9290328716878455,
+        "ks_statistic": 0.07557973089035214,
+        "p_value": 0.9420719056888954,
         "drifted": false
       },
       "DayOfWeek": {
-        "ks_statistic": 0.046,
-        "p_value": 0.9999285242413767,
+        "ks_statistic": 0.050918162856324896,
+        "p_value": 0.9994021125215229,
         "drifted": false
       },
       "Month": {
@@ -50,8 +50,8 @@
     }
   },
   "data_quality": {
-    "timestamp": "2026-05-26T01:52:32.914073Z",
-    "n_samples": 50,
+    "timestamp": "2026-05-28T05:51:12.869728Z",
+    "n_samples": 49,
     "n_features": 8,
     "total_issues": 0,
     "issues": [],
