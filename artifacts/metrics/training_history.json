@@ -3,13 +3,13 @@
   "kernel": "rbf",
   "C": 10,
   "gamma": 0.1,
-  "train_accuracy": 0.9840319361277445,
+  "train_accuracy": 0.988,
   "test_accuracy": 0.9090909090909091,
-  "n_support_vectors": 204,
+  "n_support_vectors": 206,
   "classes": [
     "High",
     "Low",
     "Medium"
   ],
-  "timestamp": "2026-05-26T01:50:16.420361Z"
+  "timestamp": "2026-05-28T05:34:06.673682Z"
 }

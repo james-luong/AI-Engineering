@@ -6,5 +6,6 @@
     "runql.ai.apiBaseUrl": "",
     "runql.ai.sendSchemaContext": true,
     "runql.ai.maxSchemaChars": 150000,
-    "python-envs.defaultEnvManager": "ms-python.python:system"
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+    "liveServer.settings.port": 5501
 }

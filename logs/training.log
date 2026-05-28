@@ -98,3 +98,30 @@ High      29
 2026-05-26 11:51:00,893 [INFO] ============================================================
 2026-05-26 11:51:00,893 [INFO]   Evaluation complete
 2026-05-26 11:51:00,893 [INFO] ============================================================
+2026-05-28 15:34:06,626 [INFO] ============================================================
+2026-05-28 15:34:06,627 [INFO]   MLOps Pipeline — TPC SVM Model Training
+2026-05-28 15:34:06,627 [INFO] ============================================================
+2026-05-28 15:34:06,627 [INFO] Loading training data from train/train.csv
+2026-05-28 15:34:06,630 [INFO] Loading test data from test/test.csv
+2026-05-28 15:34:06,631 [INFO] New data detected at data/new_data.csv — merging into training set
+2026-05-28 15:34:06,632 [INFO] Training set expanded: 450 → 500 rows (+50)
+2026-05-28 15:34:06,646 [INFO] Train class distribution:
+Target_Class
+Low       167
+High      167
+Medium    166
+2026-05-28 15:34:06,647 [INFO] Test  class distribution:
+Target_Class
+Low       37
+Medium    33
+High      29
+2026-05-28 15:34:06,647 [INFO] Preprocessing features …
+2026-05-28 15:34:06,654 [INFO] Preprocessing done | train=(500, 8) | test=(99, 8) | classes=['High', 'Low', 'Medium']
+2026-05-28 15:34:06,654 [INFO] Training SVM (C=10, gamma=0.1, kernel=rbf) …
+2026-05-28 15:34:06,672 [INFO] Train accuracy = 0.9880
+2026-05-28 15:34:06,672 [INFO] Test  accuracy = 0.9091
+2026-05-28 15:34:06,673 [INFO] Model saved → artifacts/models/model.pkl
+2026-05-28 15:34:06,673 [INFO] Metadata saved | version=20260528_053406
+2026-05-28 15:34:06,674 [INFO] ============================================================
+2026-05-28 15:34:06,674 [INFO]   Training complete | test accuracy = 0.9091
+2026-05-28 15:34:06,674 [INFO] ============================================================
